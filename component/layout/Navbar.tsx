@@ -5,11 +5,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/public/trams-2.svg";
+import { Dispatch, SetStateAction } from "react";
 
-export default function Navbar() {
+interface NavbarProps {
+  isDark: boolean;
+  setIsDark: Dispatch<SetStateAction<boolean>>;
+}
+export default function Navbar({
+  isDark,
+  setIsDark,
+}: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [focusDropdownOpen, setFocusDropdownOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false); // Controls the active corporate theme color schema
+  // Controls the active corporate theme color schema
 
   // Structured business categories for the Focus dropdown
   const focusAreas = [
@@ -28,7 +36,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           {/* Brand Identity */}
-          <div className="flex-shrink-0 flex items-center">
+          <div className="shrink-0 flex items-center">
             <Link href="/" className="flex items-center">
               <motion.div
                 animate={{
@@ -62,7 +70,7 @@ export default function Navbar() {
             >
               Home
               <span
-                className={`absolute bottom-0 left-0 w-full h-[2px] scale-x-100 origin-left ${isDark ? "bg-emerald-500" : "bg-emerald-800"}`}
+                className={`absolute bottom-0 left-0 w-full h-o.5 scale-x-100 origin-left ${isDark ? "bg-emerald-500" : "bg-emerald-800"}`}
               />
             </Link>
 
@@ -76,7 +84,7 @@ export default function Navbar() {
             >
               Who We Are
               <span
-                className={`absolute bottom-0 left-0 w-full h-[2px] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200 ${isDark ? "bg-emerald-400" : "bg-emerald-800"}`}
+                className={`absolute bottom-0 left-0 w-full h-0.5 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200 ${isDark ? "bg-emerald-400" : "bg-emerald-800"}`}
               />
             </Link>
 
@@ -90,7 +98,7 @@ export default function Navbar() {
             >
               Our Values
               <span
-                className={`absolute bottom-0 left-0 w-full h-[2px] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200 ${isDark ? "bg-emerald-400" : "bg-emerald-800"}`}
+                className={`absolute bottom-0 left-0 w-full h-0.5 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200 ${isDark ? "bg-emerald-400" : "bg-emerald-800"}`}
               />
             </Link>
 
@@ -105,7 +113,7 @@ export default function Navbar() {
             >
               Focus on
               <span
-                className={`absolute bottom-0 left-0 w-full h-[2px] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200 ${isDark ? "bg-emerald-400" : "bg-emerald-800"}`}
+                className={`absolute bottom-0 left-0 w-full h-0.5 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200 ${isDark ? "bg-emerald-400" : "bg-emerald-800"}`}
               />
             </Link>
 
@@ -119,7 +127,7 @@ export default function Navbar() {
             >
               Features
               <span
-                className={`absolute bottom-0 left-0 w-full h-[2px] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200 ${isDark ? "bg-emerald-400" : "bg-emerald-800"}`}
+                className={`absolute bottom-0 left-0 w-full h-0.5 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200 ${isDark ? "bg-emerald-400" : "bg-emerald-800"}`}
               />
             </Link>
           </div>
