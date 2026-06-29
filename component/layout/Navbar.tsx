@@ -75,7 +75,7 @@ export default function Navbar({
             </Link>
 
             <Link
-              href="#who-we-are"
+              href="/about"
               className={`relative font-medium text-sm tracking-wide group py-2 transition-colors duration-150 ${
                 isDark
                   ? "text-stone-300 hover:text-emerald-400"
@@ -178,7 +178,7 @@ export default function Navbar({
             {/* Executive CTA Button */}
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link
-                href="#contact"
+                href="/contact"
                 className={`relative inline-block border-2 font-semibold text-xs uppercase tracking-widest px-6 py-3 transition-colors duration-300 isolate before:absolute before:inset-0 before:scale-x-0 hover:before:scale-x-100 before:origin-left before:transition-transform before:duration-300 before:-z-10 ${
                   isDark
                     ? "border-white text-white before:bg-white hover:text-[#101010]"
@@ -280,7 +280,7 @@ export default function Navbar({
                 Home
               </Link>
               <Link
-                href="#who-we-are"
+                href="/about"
                 onClick={() => setIsOpen(false)}
                 className={`block font-medium text-sm py-2 ${isDark ? "text-stone-300" : "text-stone-600"}`}
               >
@@ -313,7 +313,7 @@ export default function Navbar({
                 className={`pt-4 border-t ${isDark ? "border-stone-800" : "border-stone-200"}`}
               >
                 <Link
-                  href="#contact"
+                  href="/contact"
                   onClick={() => setIsOpen(false)}
                   className={`block w-full text-center border-2 font-semibold text-xs uppercase tracking-widest py-3 ${
                     isDark
