@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import { useTheme } from "@/component/layout/ThemeProvider";
 import Navbar from "@/component/layout/Navbar";
 import Footer from "@/component/layout/Footer";
 
 export default function RequestConsultancyPage() {
-  const [isDark, setIsDark] = useState(false);
+  const { isDark, setIsDark } = useTheme();
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [formData, setFormData] = useState({
     objective: "",

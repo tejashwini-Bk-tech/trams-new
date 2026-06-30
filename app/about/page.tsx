@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useTheme } from "@/component/layout/ThemeProvider";
 import HeroAboutSection from "@/component/about/section1";
 import Navbar from "@/component/layout/Navbar";
 import NarrativeTreeSection from "@/component/about/section2";
@@ -9,7 +9,7 @@ import StorySection from "@/component/about/section";
 import Footer from "@/component/layout/Footer";
 
 export default function AboutSubSection() {
-  const [isDark, setIsDark] = useState(false);
+  const { isDark, setIsDark } = useTheme();
 
   return (
     <div
