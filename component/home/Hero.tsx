@@ -104,7 +104,7 @@ const itemVariants: Variants = {
           <motion.div variants={itemVariants} className="pt-4 flex flex-wrap items-center gap-5">
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link
-                href="#contact"
+                href="/contact"
                 className={`relative inline-block border-2 font-bold text-xs uppercase tracking-widest px-8 py-4 transition-colors duration-300 isolate before:absolute before:inset-0 before:scale-x-0 hover:before:scale-x-100 before:origin-left before:transition-transform before:duration-300 before:-z-10 ${
                   isDark 
                     ? "border-emerald-500 text-emerald-400 before:bg-emerald-500 hover:text-[#101010]" 
