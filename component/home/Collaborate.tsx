@@ -7,7 +7,7 @@ interface ContactPageProps {
   isDark: boolean;
 }
 
-const CONTACT_EMAIL = "hello@trams.org";
+const CONTACT_EMAIL = "darpan@oct2716.onmicrosoft.com";
 
 export default function ContactUs({ isDark }: ContactPageProps) {
   const [selectedInquiry, setSelectedInquiry] = useState("Partnership");
