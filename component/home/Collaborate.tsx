@@ -7,8 +7,11 @@ interface ContactPageProps {
   isDark: boolean;
 }
 
+const CONTACT_EMAIL = "hello@trams.org";
+
 export default function ContactUs({ isDark }: ContactPageProps) {
   const [selectedInquiry, setSelectedInquiry] = useState("Partnership");
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "sent">("idle");
   const [formData, setFormData] = useState({
     name: "",
     organization: "",
@@ -21,7 +24,36 @@ export default function ContactUs({ isDark }: ContactPageProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Payload initialized:", { selectedInquiry, ...formData });
+    const submission = {
+      inquiryType: selectedInquiry,
+      ...formData,
+      submittedAt: new Date().toISOString(),
+    };
+    const savedSubmissions = JSON.parse(
+      localStorage.getItem("trams-contact-submissions") ?? "[]",
+    ) as typeof submission[];
+
+    localStorage.setItem(
+      "trams-contact-submissions",
+      JSON.stringify([submission, ...savedSubmissions].slice(0, 10)),
+    );
+
+    const subject = encodeURIComponent(`Trams ${selectedInquiry} Inquiry`);
+    const body = encodeURIComponent(
+      [
+        `Inquiry Type: ${selectedInquiry}`,
+        `Name: ${formData.name}`,
+        `Organization: ${formData.organization || "Not provided"}`,
+        `Email: ${formData.email}`,
+        `Phone: ${formData.phone || "Not provided"}`,
+        "",
+        "Message:",
+        formData.message || "Not provided",
+      ].join("\n"),
+    );
+
+    setSubmitStatus("sent");
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
   };
 
   // Advanced Animation Configurations
@@ -157,6 +189,8 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                   <div className="relative group">
                     <input
                       type="text"
+                      required
+                      autoComplete="name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className={`w-full bg-transparent border-b py-3 text-base outline-none transition-all duration-300 peer ${
@@ -164,8 +198,8 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                       }`}
                       placeholder=" "
                     />
-                    <label className={`absolute left-0 top-3 text-sm font-medium tracking-wide transition-all duration-300 pointer-events-none peer-focus:-top-4 peer-focus:text-xs ${
-                      formData.name ? "-top-4 text-xs" : ""
+                    <label className={`absolute left-0 font-medium tracking-wide transition-all duration-300 pointer-events-none peer-focus:-top-4 peer-focus:text-xs ${
+                      formData.name ? "-top-4 text-xs" : "top-3 text-sm"
                     } ${isDark ? "text-stone-500 peer-focus:text-emerald-400" : "text-stone-400 peer-focus:text-stone-900"}`}>
                       Name
                     </label>
@@ -175,6 +209,7 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                   <div className="relative group">
                     <input
                       type="text"
+                      autoComplete="organization"
                       value={formData.organization}
                       onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                       className={`w-full bg-transparent border-b py-3 text-base outline-none transition-all duration-300 peer ${
@@ -182,8 +217,8 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                       }`}
                       placeholder=" "
                     />
-                    <label className={`absolute left-0 top-3 text-sm font-medium tracking-wide transition-all duration-300 pointer-events-none peer-focus:-top-4 peer-focus:text-xs ${
-                      formData.organization ? "-top-4 text-xs" : ""
+                    <label className={`absolute left-0 font-medium tracking-wide transition-all duration-300 pointer-events-none peer-focus:-top-4 peer-focus:text-xs ${
+                      formData.organization ? "-top-4 text-xs" : "top-3 text-sm"
                     } ${isDark ? "text-stone-500 peer-focus:text-emerald-400" : "text-stone-400 peer-focus:text-stone-900"}`}>
                       Organization
                     </label>
@@ -194,6 +229,7 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                     <input
                       type="email"
                       required
+                      autoComplete="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className={`w-full bg-transparent border-b py-3 text-base outline-none transition-all duration-300 peer ${
@@ -201,8 +237,8 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                       }`}
                       placeholder=" "
                     />
-                    <label className={`absolute left-0 top-3 text-sm font-medium tracking-wide transition-all duration-300 pointer-events-none peer-focus:-top-4 peer-focus:text-xs ${
-                      formData.email ? "-top-4 text-xs" : ""
+                    <label className={`absolute left-0 font-medium tracking-wide transition-all duration-300 pointer-events-none peer-focus:-top-4 peer-focus:text-xs ${
+                      formData.email ? "-top-4 text-xs" : "top-3 text-sm"
                     } ${isDark ? "text-stone-500 peer-focus:text-emerald-400" : "text-stone-400 peer-focus:text-stone-900"}`}>
                       Email *
                     </label>
@@ -212,6 +248,7 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                   <div className="relative group">
                     <input
                       type="tel"
+                      autoComplete="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className={`w-full bg-transparent border-b py-3 text-base outline-none transition-all duration-300 peer ${
@@ -219,8 +256,8 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                       }`}
                       placeholder=" "
                     />
-                    <label className={`absolute left-0 top-3 text-sm font-medium tracking-wide transition-all duration-300 pointer-events-none peer-focus:-top-4 peer-focus:text-xs ${
-                      formData.phone ? "-top-4 text-xs" : ""
+                    <label className={`absolute left-0 font-medium tracking-wide transition-all duration-300 pointer-events-none peer-focus:-top-4 peer-focus:text-xs ${
+                      formData.phone ? "-top-4 text-xs" : "top-3 text-sm"
                     } ${isDark ? "text-stone-500 peer-focus:text-emerald-400" : "text-stone-400 peer-focus:text-stone-900"}`}>
                       Phone Number
                     </label>
@@ -231,6 +268,7 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                 <div className="relative group pt-4">
                   <textarea
                     rows={3}
+                    required
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className={`w-full bg-transparent border-b py-3 text-base outline-none resize-none transition-all duration-300 peer ${
@@ -238,8 +276,8 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                     }`}
                     placeholder=" "
                   />
-                  <label className={`absolute left-0 top-7 text-sm font-medium tracking-wide transition-all duration-300 pointer-events-none peer-focus:-top-3 peer-focus:text-xs ${
-                    formData.message ? "-top-3 text-xs" : ""
+                  <label className={`absolute left-0 font-medium tracking-wide transition-all duration-300 pointer-events-none peer-focus:-top-3 peer-focus:text-xs ${
+                    formData.message ? "-top-3 text-xs" : "top-7 text-sm"
                   } ${isDark ? "text-stone-500 peer-focus:text-emerald-400" : "text-stone-400 peer-focus:text-stone-900"}`}>
                     Message
                   </label>
@@ -264,6 +302,17 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                   </svg>
                 </motion.button>
               </div>
+
+              {submitStatus === "sent" && (
+                <p
+                  role="status"
+                  className={`text-sm leading-relaxed ${
+                    isDark ? "text-emerald-300" : "text-emerald-800"
+                  }`}
+                >
+                  Your email app should open with the message prepared. A local copy has also been saved in this browser.
+                </p>
+              )}
 
             </form>
           </motion.div>
