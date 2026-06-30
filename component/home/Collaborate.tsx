@@ -64,7 +64,7 @@ export default function ContactUs({ isDark }: ContactPageProps) {
       {/* Cinematic Ambient Background Gradients — Integrated smoothly with adjacent sections */}
       {isDark && (
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <div className="absolute top-1/4 right-1/4 w-[55rem] h-[55rem] rounded-full bg-blue-600/10 blur-[150px] transform translate-z-0" />
+          <div className="absolute top-1/4 right-1/4 w-[55rem] h-[55rem] rounded-full bg-emerald-600/10 blur-[150px] transform translate-z-0" />
           <div className="absolute bottom-1/4 left-1/3 w-[45rem] h-[45rem] rounded-full bg-emerald-500/5 blur-[140px] transform translate-z-0" />
         </div>
       )}
@@ -81,8 +81,8 @@ export default function ContactUs({ isDark }: ContactPageProps) {
           {/* LEFT COLUMN: Deep Editorial Typography */}
           <motion.div variants={fadeInLeft} className="lg:col-span-5 space-y-8">
             <div className="flex items-center space-x-3">
-              <span className={`text-xs font-mono uppercase tracking-[0.3em] ${isDark ? "text-blue-400" : "text-emerald-800"}`}>
-                // Connection Routing
+              <span className={`text-xs font-mono uppercase tracking-[0.3em] ${isDark ? "text-emerald-400" : "text-emerald-800"}`}>
+                Connection Routing
               </span>
               <span className={`w-12 h-[1px] ${isDark ? "bg-stone-800" : "bg-stone-200"}`} />
             </div>
@@ -92,7 +92,7 @@ export default function ContactUs({ isDark }: ContactPageProps) {
             }`}>
               Let’s build <br />
               <span className={`bg-clip-text text-transparent bg-gradient-to-r ${
-                isDark ? "from-blue-400 via-indigo-200 to-emerald-400" : "from-stone-900 to-stone-600"
+                isDark ? "from-emerald-300 via-stone-100 to-emerald-500" : "from-stone-900 to-stone-600"
               }`}>
                 something real.
               </span>
@@ -132,7 +132,7 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                         className={`px-5 py-3 text-xs font-mono uppercase tracking-wider rounded-lg border transition-all duration-300 ${
                           isSelected
                             ? isDark 
-                              ? "border-blue-500/50 text-white bg-blue-600/10 shadow-[0_0_25px_rgba(37,99,235,0.15)]"
+                              ? "border-emerald-500/50 text-white bg-emerald-600/10 shadow-[0_0_25px_rgba(16,185,129,0.15)]"
                               : "border-stone-900 bg-stone-900 text-white"
                             : isDark
                               ? "border-stone-800/80 text-stone-400 hover:border-stone-700 hover:text-stone-200 bg-stone-950/40"
@@ -160,13 +160,13 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className={`w-full bg-transparent border-b py-3 text-base outline-none transition-all duration-300 peer ${
-                        isDark ? "border-stone-800 text-white focus:border-blue-500" : "border-stone-200 text-stone-900 focus:border-stone-900"
+                        isDark ? "border-stone-800 text-white focus:border-emerald-500" : "border-stone-200 text-stone-900 focus:border-stone-900"
                       }`}
                       placeholder=" "
                     />
                     <label className={`absolute left-0 top-3 text-sm font-medium tracking-wide transition-all duration-300 pointer-events-none peer-focus:-top-4 peer-focus:text-xs ${
                       formData.name ? "-top-4 text-xs" : ""
-                    } ${isDark ? "text-stone-500 peer-focus:text-blue-400" : "text-stone-400 peer-focus:text-stone-900"}`}>
+                    } ${isDark ? "text-stone-500 peer-focus:text-emerald-400" : "text-stone-400 peer-focus:text-stone-900"}`}>
                       Name
                     </label>
                   </div>
@@ -178,13 +178,13 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                       value={formData.organization}
                       onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                       className={`w-full bg-transparent border-b py-3 text-base outline-none transition-all duration-300 peer ${
-                        isDark ? "border-stone-800 text-white focus:border-blue-500" : "border-stone-200 text-stone-900 focus:border-stone-900"
+                        isDark ? "border-stone-800 text-white focus:border-emerald-500" : "border-stone-200 text-stone-900 focus:border-stone-900"
                       }`}
                       placeholder=" "
                     />
                     <label className={`absolute left-0 top-3 text-sm font-medium tracking-wide transition-all duration-300 pointer-events-none peer-focus:-top-4 peer-focus:text-xs ${
                       formData.organization ? "-top-4 text-xs" : ""
-                    } ${isDark ? "text-stone-500 peer-focus:text-blue-400" : "text-stone-400 peer-focus:text-stone-900"}`}>
+                    } ${isDark ? "text-stone-500 peer-focus:text-emerald-400" : "text-stone-400 peer-focus:text-stone-900"}`}>
                       Organization
                     </label>
                   </div>
@@ -197,13 +197,13 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className={`w-full bg-transparent border-b py-3 text-base outline-none transition-all duration-300 peer ${
-                        isDark ? "border-stone-800 text-white focus:border-blue-500" : "border-stone-200 text-stone-900 focus:border-stone-900"
+                        isDark ? "border-stone-800 text-white focus:border-emerald-500" : "border-stone-200 text-stone-900 focus:border-stone-900"
                       }`}
                       placeholder=" "
                     />
                     <label className={`absolute left-0 top-3 text-sm font-medium tracking-wide transition-all duration-300 pointer-events-none peer-focus:-top-4 peer-focus:text-xs ${
                       formData.email ? "-top-4 text-xs" : ""
-                    } ${isDark ? "text-stone-500 peer-focus:text-blue-400" : "text-stone-400 peer-focus:text-stone-900"}`}>
+                    } ${isDark ? "text-stone-500 peer-focus:text-emerald-400" : "text-stone-400 peer-focus:text-stone-900"}`}>
                       Email *
                     </label>
                   </div>
@@ -215,13 +215,13 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className={`w-full bg-transparent border-b py-3 text-base outline-none transition-all duration-300 peer ${
-                        isDark ? "border-stone-800 text-white focus:border-blue-500" : "border-stone-200 text-stone-900 focus:border-stone-900"
+                        isDark ? "border-stone-800 text-white focus:border-emerald-500" : "border-stone-200 text-stone-900 focus:border-stone-900"
                       }`}
                       placeholder=" "
                     />
                     <label className={`absolute left-0 top-3 text-sm font-medium tracking-wide transition-all duration-300 pointer-events-none peer-focus:-top-4 peer-focus:text-xs ${
                       formData.phone ? "-top-4 text-xs" : ""
-                    } ${isDark ? "text-stone-500 peer-focus:text-blue-400" : "text-stone-400 peer-focus:text-stone-900"}`}>
+                    } ${isDark ? "text-stone-500 peer-focus:text-emerald-400" : "text-stone-400 peer-focus:text-stone-900"}`}>
                       Phone Number
                     </label>
                   </div>
@@ -234,13 +234,13 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className={`w-full bg-transparent border-b py-3 text-base outline-none resize-none transition-all duration-300 peer ${
-                      isDark ? "border-stone-800 text-white focus:border-blue-500" : "border-stone-200 text-stone-900 focus:border-stone-900"
+                      isDark ? "border-stone-800 text-white focus:border-emerald-500" : "border-stone-200 text-stone-900 focus:border-stone-900"
                     }`}
                     placeholder=" "
                   />
                   <label className={`absolute left-0 top-7 text-sm font-medium tracking-wide transition-all duration-300 pointer-events-none peer-focus:-top-3 peer-focus:text-xs ${
                     formData.message ? "-top-3 text-xs" : ""
-                  } ${isDark ? "text-stone-500 peer-focus:text-blue-400" : "text-stone-400 peer-focus:text-stone-900"}`}>
+                  } ${isDark ? "text-stone-500 peer-focus:text-emerald-400" : "text-stone-400 peer-focus:text-stone-900"}`}>
                     Message
                   </label>
                 </div>

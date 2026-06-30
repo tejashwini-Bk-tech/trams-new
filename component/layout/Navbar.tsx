@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/public/trams-2.svg";
 import { Dispatch, SetStateAction } from "react";
@@ -16,16 +17,43 @@ export default function Navbar({
   setIsDark,
 }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [focusDropdownOpen, setFocusDropdownOpen] = useState(false);
-  // Controls the active corporate theme color schema
+  const pathname = usePathname();
 
-  // Structured business categories for the Focus dropdown
-  const focusAreas = [
-    { name: "ESG Strategy & Reporting", href: "#esg-strategy" },
-    { name: "Carbon Accounting & Net Zero", href: "#carbon-accounting" },
-    { name: "Circular Economy Transition", href: "#circular-economy" },
-    { name: "Sustainable Supply Chain", href: "#supply-chain" },
+  const navItems = [
+    { label: "Home", href: "/", match: "/" },
+    { label: "Who We Are", href: "/about", match: "/about" }
+   
   ];
+
+  const isActiveRoute = (match: string) => {
+    if (match.includes("#")) {
+      return pathname === "/" && match.startsWith("/#");
+    }
+
+    return match === "/" ? pathname === "/" : pathname.startsWith(match);
+  };
+
+  const desktopLinkClass = (active: boolean) =>
+    `relative text-sm tracking-wide group py-2 transition-colors duration-150 ${
+      active
+        ? `font-semibold ${isDark ? "text-emerald-300" : "text-emerald-900"}`
+        : `font-medium ${
+            isDark
+              ? "text-stone-300 hover:text-emerald-400"
+              : "text-stone-600 hover:text-emerald-800"
+          }`
+    }`;
+
+  const mobileLinkClass = (active: boolean) =>
+    `block rounded-sm px-3 py-2 text-sm transition-colors ${
+      active
+        ? isDark
+          ? "bg-emerald-500/10 text-emerald-300 font-semibold"
+          : "bg-emerald-50 text-emerald-900 font-semibold"
+        : isDark
+          ? "text-stone-300 hover:text-emerald-300"
+          : "text-stone-600 hover:text-emerald-900"
+    }`;
 
   return (
     <nav
@@ -62,74 +90,24 @@ export default function Navbar({
 
           {/* Desktop Management Navigation */}
           <div className="hidden md:flex items-center space-x-10">
-            <Link
-              href="/"
-              className={`relative font-semibold text-sm uppercase tracking-wider py-2 transition-colors duration-150 ${
-                isDark ? "text-white" : "text-stone-900"
-              }`}
-            >
-              Home
-              <span
-                className={`absolute bottom-0 left-0 w-full h-o.5 scale-x-100 origin-left ${isDark ? "bg-emerald-500" : "bg-emerald-800"}`}
-              />
-            </Link>
+            {navItems.map((item) => {
+              const active = isActiveRoute(item.match);
 
-            <Link
-              href="/about"
-              className={`relative font-medium text-sm tracking-wide group py-2 transition-colors duration-150 ${
-                isDark
-                  ? "text-stone-300 hover:text-emerald-400"
-                  : "text-stone-600 hover:text-emerald-800"
-              }`}
-            >
-              Who We Are
-              <span
-                className={`absolute bottom-0 left-0 w-full h-0.5 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200 ${isDark ? "bg-emerald-400" : "bg-emerald-800"}`}
-              />
-            </Link>
-
-            <Link
-              href="#values"
-              className={`relative font-medium text-sm tracking-wide group py-2 transition-colors duration-150 ${
-                isDark
-                  ? "text-stone-300 hover:text-emerald-400"
-                  : "text-stone-600 hover:text-emerald-800"
-              }`}
-            >
-              Our Values
-              <span
-                className={`absolute bottom-0 left-0 w-full h-0.5 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200 ${isDark ? "bg-emerald-400" : "bg-emerald-800"}`}
-              />
-            </Link>
-
-            {/* Interactive Focus Dropdown */}
-            <Link
-              href="#features"
-              className={`relative font-medium text-sm tracking-wide group py-2 transition-colors duration-150 ${
-                isDark
-                  ? "text-stone-300 hover:text-emerald-400"
-                  : "text-stone-600 hover:text-emerald-800"
-              }`}
-            >
-              Focus on
-              <span
-                className={`absolute bottom-0 left-0 w-full h-0.5 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200 ${isDark ? "bg-emerald-400" : "bg-emerald-800"}`}
-              />
-            </Link>
-
-            <Link
-              href="#features"
-              className={`relative font-medium text-sm tracking-wide group py-2 transition-colors duration-150 ${
-                isDark
-                  ? "text-stone-300 hover:text-emerald-400"
-                  : "text-stone-600 hover:text-emerald-800"
-              }`}
-            >
-              Features
-              <span
-                className={`absolute bottom-0 left-0 w-full h-0.5 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-200 ${isDark ? "bg-emerald-400" : "bg-emerald-800"}`}
-              />
-            </Link>
+              return (
+                <Link
+                  key={`${item.label}-${item.href}`}
+                  href={item.href}
+                  className={desktopLinkClass(active)}
+                >
+                  {item.label}
+                  <span
+                    className={`absolute bottom-0 left-0 h-0.5 w-full origin-left transition-transform duration-200 ${
+                      active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    } ${isDark ? "bg-emerald-400" : "bg-emerald-800"}`}
+                  />
+                </Link>
+              );
+            })}
           </div>
 
           {/* Action Center (Toggle + Executive Button) */}
@@ -272,42 +250,16 @@ export default function Navbar({
             }`}
           >
             <div className="px-6 pt-3 pb-6 space-y-3">
-              <Link
-                href="/"
-                onClick={() => setIsOpen(false)}
-                className={`block font-semibold text-sm uppercase tracking-wide py-2 ${isDark ? "text-white" : "text-stone-900"}`}
-              >
-                Home
-              </Link>
-              <Link
-                href="/about"
-                onClick={() => setIsOpen(false)}
-                className={`block font-medium text-sm py-2 ${isDark ? "text-stone-300" : "text-stone-600"}`}
-              >
-                Who We Are
-              </Link>
-              <Link
-                href="#values"
-                onClick={() => setIsOpen(false)}
-                className={`block font-medium text-sm py-2 ${isDark ? "text-stone-300" : "text-stone-600"}`}
-              >
-                Our Values
-              </Link>
-              <Link
-                href="#values"
-                onClick={() => setIsOpen(false)}
-                className={`block font-medium text-sm py-2 ${isDark ? "text-stone-300" : "text-stone-600"}`}
-              >
-                Focus on
-              </Link>
-
-              <Link
-                href="#features"
-                onClick={() => setIsOpen(false)}
-                className={`block font-medium text-sm py-2 ${isDark ? "text-stone-300" : "text-stone-600"}`}
-              >
-                Features
-              </Link>
+              {navItems.map((item) => (
+                <Link
+                  key={`${item.label}-${item.href}-mobile`}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={mobileLinkClass(isActiveRoute(item.match))}
+                >
+                  {item.label}
+                </Link>
+              ))}
 
               <div
                 className={`pt-4 border-t ${isDark ? "border-stone-800" : "border-stone-200"}`}

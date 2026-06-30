@@ -8,26 +8,26 @@ import ExecutionStepsSection from "@/component/about/section3";
 import StorySection from "@/component/about/section";
 import Footer from "@/component/layout/Footer";
 
-interface AboutSubSectionProps {
-  isDark: boolean;
-}
-
-export default function AboutSubSection({ isDark }: AboutSubSectionProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
+export default function AboutSubSection() {
+  const [isDark, setIsDark] = useState(false);
 
   return (
-    <>
-    <Navbar isDark={isDark} setIsDark={setIsExpanded}/>
+    <div
+      className={`min-h-screen transition-colors duration-500 ${
+        isDark ? "bg-[#101010]" : "bg-stone-50"
+      }`}
+    >
+    <Navbar isDark={isDark} setIsDark={setIsDark}/>
     <main>
     <HeroAboutSection
       isDark={isDark}
-      onReadMoreToggle={setIsExpanded}
+      onReadMoreToggle={() => {}}
     />
     <StorySection isDark={isDark}/>
     <NarrativeTreeSection isDark={isDark}/>
     <ExecutionStepsSection isDark={isDark}/>
     </main>
     <Footer isDark={isDark}/>
-    </>
+    </div>
   );
 }

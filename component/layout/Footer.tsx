@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 interface FooterProps {
   isDark: boolean;
 }
@@ -54,7 +52,7 @@ export default function Footer({ isDark }: FooterProps) {
       {isDark && (
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
           <div className="absolute -bottom-48 right-1/3 w-[45rem] h-[45rem] rounded-full bg-emerald-500/5 blur-[140px] transform translate-z-0" />
-          <div className="absolute -bottom-48 left-1/4 w-[40rem] h-[40rem] rounded-full bg-blue-600/5 blur-[130px] transform translate-z-0" />
+          <div className="absolute -bottom-48 left-1/4 w-[40rem] h-[40rem] rounded-full bg-emerald-600/5 blur-[130px] transform translate-z-0" />
         </div>
       )}
 
@@ -103,7 +101,7 @@ export default function Footer({ isDark }: FooterProps) {
                       >
                         <span>{link.label}</span>
                         <span className={`h-[1px] w-full transform scale-x-0 origin-left transition-transform duration-300 ${
-                          isDark ? "bg-blue-400" : "bg-stone-900"
+                          isDark ? "bg-emerald-400" : "bg-stone-900"
                         } group-hover:scale-x-100`} />
                       </a>
                     </li>
@@ -133,7 +131,7 @@ export default function Footer({ isDark }: FooterProps) {
                 href={social.href}
                 aria-label={social.description}
                 className={`text-xs font-mono tracking-widest transition-colors duration-200 uppercase ${
-                  isDark ? "text-stone-500 hover:text-blue-400" : "text-stone-400 hover:text-stone-900"
+                  isDark ? "text-stone-500 hover:text-emerald-400" : "text-stone-400 hover:text-stone-900"
                 }`}
               >
                 [{social.label}]

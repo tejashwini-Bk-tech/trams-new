@@ -41,7 +41,7 @@ export default function About({ isDark }: AboutSectionProps) {
     >
       {/* Background Subtle Accent */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className={`absolute bottom-0 left-0 w-[40rem] h-[40rem] rounded-full blur-[140px] transition-opacity duration-700 ${
+        <div className={`absolute bottom-0 left-0 w-160 h-160 rounded-full blur-[140px] transition-opacity duration-700 ${
           isDark ? "bg-emerald-950/10" : "bg-emerald-50/30"
         }`} />
       </div>
@@ -61,7 +61,7 @@ export default function About({ isDark }: AboutSectionProps) {
               <span className={`text-xs font-bold uppercase tracking-[0.35em] ${isDark ? "text-emerald-400" : "text-emerald-800"}`}>
                 Our Core Philosophy
               </span>
-              <span className={`w-12 h-[1px] ${isDark ? "bg-stone-800" : "bg-stone-200"}`} />
+              <span className={`w-12 h-px ${isDark ? "bg-stone-800" : "bg-stone-200"}`} />
             </motion.div>
 
             <motion.h2 
@@ -71,7 +71,7 @@ export default function About({ isDark }: AboutSectionProps) {
               }`}
             >
               Stronger Together, <br />
-              <span className={`bg-clip-text text-transparent bg-gradient-to-r ${
+              <span className={`bg-clip-text text-transparent bg-linear-to-r ${
                 isDark ? "from-emerald-400 to-teal-300" : "from-emerald-800 to-emerald-950"
               }`}>
                 Faster Towards the Goals.

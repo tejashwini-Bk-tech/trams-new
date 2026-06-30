@@ -76,7 +76,7 @@ export default function ValuesSection({ isDark }: ValuesSectionProps) {
       {/* Ambient Background Gradients */}
       {isDark && (
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 right-1/4 w-[40rem] h-[40rem] rounded-full bg-blue-600/10 blur-[130px]" />
+          <div className="absolute -top-40 right-1/4 w-[40rem] h-[40rem] rounded-full bg-emerald-600/10 blur-[130px]" />
           <div className="absolute -bottom-20 left-10 w-[30rem] h-[30rem] rounded-full bg-emerald-500/5 blur-[120px]" />
         </div>
       )}

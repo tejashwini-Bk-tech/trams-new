@@ -2,12 +2,11 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import Navbar from "@/component/layout/Navbar";
+import Footer from "@/component/layout/Footer";
 
-interface RequestConsultancyProps {
-  isDark: boolean;
-}
-
-export default function RequestConsultancyPage({ isDark }: RequestConsultancyProps) {
+export default function RequestConsultancyPage() {
+  const [isDark, setIsDark] = useState(false);
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [formData, setFormData] = useState({
     objective: "",
@@ -42,11 +41,16 @@ export default function RequestConsultancyPage({ isDark }: RequestConsultancyPro
     { id: "connect", label: "Cross-Sector Partnership Engineering", desc: "Building premium institutional pipelines and asset resources." },
     { id: "accelerate", label: "SDG Velocity Optimization", desc: "Accelerating internal workflows toward global sustainability benchmarks." }
   ];
-
   return (
-    <section 
+   <div
+    className={`min-h-screen transition-colors duration-500 ${
+      isDark ? "bg-[#101010]" : "bg-stone-50"
+    }`}
+   >
+   <Navbar isDark={isDark} setIsDark={setIsDark}/>
+     <section 
       className={`relative min-h-[90vh] py-24 md:py-36 flex items-center overflow-hidden transition-colors duration-700 ${
-        isDark ? "bg-[#060c0b] text-stone-200" : "bg-[#fcfbf9] text-stone-900"
+        isDark ? "bg-[#101010] text-stone-200" : "bg-stone-50 text-stone-900"
       }`}
     >
       {/* Background Micro-Grid Graphic Accent */}
@@ -78,7 +82,7 @@ export default function RequestConsultancyPage({ isDark }: RequestConsultancyPro
         </div>
 
         {/* Dynamic Multi-Step Form Core */}
-        <div className="relative min-h-[400px]">
+        <div className="relative min-h-100">
           <AnimatePresence mode="wait">
             
             {isSubmitted ? (
@@ -302,5 +306,7 @@ export default function RequestConsultancyPage({ isDark }: RequestConsultancyPro
 
       </div>
     </section>
+    <Footer isDark={isDark}/>
+   </div>
   );
 }
