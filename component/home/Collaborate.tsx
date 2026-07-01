@@ -47,8 +47,8 @@ export default function ContactUs({ isDark }: ContactPageProps) {
           _subject: `Trams ${selectedInquiry} Inquiry`,
           _template: "table",
           _captcha: "false",
-          _cc: "tejukoli2005@gmail.com",
-          from_name: formData.name,
+       
+          
           name: formData.name,
           organization: formData.organization || "Not provided",
           email: formData.email,
