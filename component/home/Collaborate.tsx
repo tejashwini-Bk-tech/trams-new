@@ -7,8 +7,6 @@ interface ContactPageProps {
   isDark: boolean;
 }
 
-const FORMSUBMIT_ENDPOINT = "https://formsubmit.co/ajax";
-
 export default function ContactUs({ isDark }: ContactPageProps) {
   const [selectedInquiry, setSelectedInquiry] = useState("Partnership");
   const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -28,33 +26,18 @@ export default function ContactUs({ isDark }: ContactPageProps) {
     setSubmitStatus("sending");
     setStatusMessage("");
 
-    const formSubmitEmail = process.env.NEXT_PUBLIC_FORMSUBMIT_EMAIL;
-
-    if (!formSubmitEmail) {
-      setSubmitStatus("error");
-      setStatusMessage("Contact form is not configured yet. Please add the FormSubmit email.");
-      return;
-    }
-
     try {
-      const response = await fetch(`${FORMSUBMIT_ENDPOINT}/${encodeURIComponent(formSubmitEmail)}`, {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json",
         },
         body: JSON.stringify({
-          _subject: `Trams ${selectedInquiry} Inquiry`,
-          _template: "table",
-          _captcha: "false",
-       
-          
           name: formData.name,
           organization: formData.organization || "Not provided",
           email: formData.email,
-          _replyto: formData.email,
           phone: formData.phone || "Not provided",
-          inquiry_type: selectedInquiry,
+          inquiryType: selectedInquiry,
           message: formData.message,
         }),
       });
