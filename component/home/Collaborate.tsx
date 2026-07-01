@@ -213,6 +213,7 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                         key={option}
                         type="button"
                         onClick={() => setSelectedInquiry(option)}
+                        suppressHydrationWarning
                         className={`px-5 py-3 text-xs font-mono uppercase tracking-wider rounded-lg border transition-all duration-300 ${
                           isSelected
                             ? isDark 
@@ -245,6 +246,7 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                       autoComplete="name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      suppressHydrationWarning
                       className={`w-full bg-transparent border-b py-3 text-base outline-none transition-all duration-300 peer ${
                         isDark ? "border-stone-800 text-white focus:border-emerald-500" : "border-stone-200 text-stone-900 focus:border-stone-900"
                       }`}
@@ -264,6 +266,7 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                       autoComplete="organization"
                       value={formData.organization}
                       onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
+                      suppressHydrationWarning
                       className={`w-full bg-transparent border-b py-3 text-base outline-none transition-all duration-300 peer ${
                         isDark ? "border-stone-800 text-white focus:border-emerald-500" : "border-stone-200 text-stone-900 focus:border-stone-900"
                       }`}
@@ -284,6 +287,7 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                       autoComplete="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      suppressHydrationWarning
                       className={`w-full bg-transparent border-b py-3 text-base outline-none transition-all duration-300 peer ${
                         isDark ? "border-stone-800 text-white focus:border-emerald-500" : "border-stone-200 text-stone-900 focus:border-stone-900"
                       }`}
@@ -303,6 +307,7 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                       autoComplete="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      suppressHydrationWarning
                       className={`w-full bg-transparent border-b py-3 text-base outline-none transition-all duration-300 peer ${
                         isDark ? "border-stone-800 text-white focus:border-emerald-500" : "border-stone-200 text-stone-900 focus:border-stone-900"
                       }`}
@@ -323,6 +328,7 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                     required
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    suppressHydrationWarning
                     className={`w-full bg-transparent border-b py-3 text-base outline-none resize-none transition-all duration-300 peer ${
                       isDark ? "border-stone-800 text-white focus:border-emerald-500" : "border-stone-200 text-stone-900 focus:border-stone-900"
                     }`}
@@ -343,6 +349,7 @@ export default function ContactUs({ isDark }: ContactPageProps) {
                   whileTap={{ scale: 0.99 }}
                   type="submit"
                   disabled={submitStatus === "sending"}
+                  suppressHydrationWarning
                   className={`w-full sm:w-auto inline-flex items-center justify-center px-12 py-4 rounded-full text-xs font-mono uppercase tracking-widest font-bold transition-all duration-300 ${
                     isDark 
                       ? "bg-white text-stone-950 hover:bg-stone-100 shadow-[0_10px_35px_rgba(255,255,255,0.06)] disabled:bg-stone-500 disabled:text-stone-200" 

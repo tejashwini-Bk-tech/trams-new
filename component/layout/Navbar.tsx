@@ -115,6 +115,7 @@ export default function Navbar({
             {/* Interactive Theme Switcher Switch */}
             <button
               onClick={() => setIsDark(!isDark)}
+              suppressHydrationWarning
               className={`p-2.5 rounded-full border transition-colors duration-200 focus:outline-none ${
                 isDark
                   ? "border-stone-800 bg-stone-900 text-amber-400 hover:bg-stone-800"
@@ -173,6 +174,7 @@ export default function Navbar({
             {/* Mobile Switcher Switch */}
             <button
               onClick={() => setIsDark(!isDark)}
+              suppressHydrationWarning
               className={`p-2 rounded-md ${isDark ? "text-amber-400" : "text-stone-600"}`}
               aria-label="Toggle structural theme layout alignment"
             >
@@ -210,6 +212,7 @@ export default function Navbar({
             {/* Hamburger Toggle */}
             <button
               onClick={() => setIsOpen(!isOpen)}
+              suppressHydrationWarning
               className="p-2 focus:outline-none"
               aria-label="Toggle navigation menu"
             >
